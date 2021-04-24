@@ -1,0 +1,19 @@
+<div class="container pt-5">
+  <div class="row equal">
+
+      <div *ngFor="let product of products.products"  class="col-sm-4 d-flex pb-5">
+        <div class="shadow card rounded-0" style="width: 18rem;">
+          <img class=" border-bottom rounded-0" src="{{product.image}}" alt="product-image">
+          <div class="card-body row">
+            <p class="card-text col font-weight-bold">{{ product.name }}</p>
+            <h3 class="card-title col text-right font-weight-bold">{{ product.price }}</h3>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="products.products.length == 0" class="alert alert-warning col text-center" role="alert">
+        No Items Found! Please add a product in ManageProducts Tab.
+      </div>
+
+  </div>
+</div>

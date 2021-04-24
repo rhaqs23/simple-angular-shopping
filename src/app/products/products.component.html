@@ -1,0 +1,111 @@
+<div class="container pt-5">
+  <form [formGroup]="productsForm" >
+    <div class="row">
+
+      <div class="form-group col-sm">
+        <label for="productName">Product Name</label>
+        <input
+          type="text"
+          class="form-control rounded-0"
+          id="productName"
+          formControlName="productName"
+          placeholder="Enter Product Name"
+          [ngClass]="{ 'is-invalid': submitted && productFormControls.productName.errors }"/>
+        <div *ngIf="submitted && productFormControls.productName.errors" class="invalid-feedback">
+          <div *ngIf="submitted && productFormControls.productName.errors.required" class="text-danger">
+            <p>Product Name required</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-sm">
+        <label for="price">Price</label>
+        <input
+          type="text"
+          class="form-control rounded-0"
+          id="price"
+          formControlName="price"
+          placeholder="Enter Price"
+          [ngClass]="{ 'is-invalid': submitted && productFormControls.price.errors }" />
+        <div *ngIf="submitted && productFormControls.price.errors" class="invalid-feedback">
+          <div *ngIf="submitted && productFormControls.price.errors.required" class="text-danger">
+            <p>Price required</p>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <label for="productDescription">Product Description</label>
+        <textarea
+        class="form-control rounded-0"
+        id="productDescription"
+        formControlName="description"
+        rows="3"
+        placeholder="Enter Description"
+        [ngClass]="{ 'is-invalid': submitted && productFormControls.description.errors }"></textarea>
+        <div *ngIf="productFormControls.description.errors" class="invalid-feedback">
+        <div *ngIf="productFormControls.description.errors.required" class="text-danger">
+          <p>Description required</p>
+        </div>
+        </div>
+      </div>
+
+      <div class="form-group col-sm-4">
+        <label for="productImg">Product Image (optional)</label>
+        <div class="custom-file">
+          <input
+            type="file"
+            class="custom-file-input rounded-0"
+            id="productImg"
+            accept="image/*"
+            (change)="uploadImage($event.target.files)"
+            />
+          <label class="custom-file-label rounded-0" for="productImg">Choose file..</label>
+        </div>
+      </div>
+
+    </div>
+    <button class="btn btn-info rounded-0" (click)="onSubmit()">Add Product</button>
+  </form>
+
+<!-- Table Goes From Here -->
+  <div class="row pt-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products.products; let i = index">
+          <th><img src="{{product.image}}" alt=""></th>
+          <td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.description}}</td>
+          <td class="text-info">
+            <p class="remove-btn" (click)="removeProduct(i)">Remove</p>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <th>
+            <div *ngIf="products.products.length == 0" class="alert alert-warning col text-center" role="alert">
+              No Items Found! Please add a product in ManageProducts Tab.
+            </div>
+          </th>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
