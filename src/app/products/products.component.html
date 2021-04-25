@@ -83,20 +83,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of products.products; let i = index">
-          <th><img src="{{product.image}}" alt=""></th>
-          <td>{{product.name}}</td>
-          <td>{{product.price}}</td>
-          <td>{{product.description}}</td>
-          <td class="text-info">
-            <p class="remove-btn" (click)="removeProduct(i)">Remove</p>
-          </td>
-        </tr>
-        <tr>
+        <ng-template #showData>
+          <tr *ngFor="let product of products.products; let i = index">
+            <th><img src="{{product.image}}" alt=""></th>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.description}}</td>
+            <td class="text-info">
+              <p class="remove-btn" (click)="removeProduct(i)">Remove</p>
+            </td>
+          </tr>
+        </ng-template>
+        <tr *ngIf="products == null || products.products.length == 0;else showData">
           <td></td>
           <td></td>
           <th>
-            <div *ngIf="products.products.length == 0" class="alert alert-warning col text-center" role="alert">
+            <div class="alert alert-warning col text-center" role="alert">
               No Items Found! Please add a product in ManageProducts Tab.
             </div>
           </th>

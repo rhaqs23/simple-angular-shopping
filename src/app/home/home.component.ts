@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   products;
-  localStorageLength = localStorage.length;
 
   getProducts() {
     this.products = JSON.parse(localStorage.getItem('products'));

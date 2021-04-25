@@ -97,6 +97,7 @@ export class ProductsComponent implements OnInit {
     let productArray = JSON.parse(localStorage.getItem('products'));
     productArray.products.splice(i, 1);
     window.localStorage.setItem("products", JSON.stringify({"products": productArray.products}));
+    alert('Product Deleted!!');
     window.location.reload();
   }
 
