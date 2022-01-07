@@ -1,4 +1,8 @@
-# Frontend
+## Description
+
+A simple app which lists products. Localstorage is being used to store product info like name, image and price.
+
+## Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.4
 Project is hosted at https://angular-simple-store-6b43d.web.app/
